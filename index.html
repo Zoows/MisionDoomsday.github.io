@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Una misión para dos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme:dark;
+  --deep:#06201f; --doom:#1f5a46; --gold:#d9b26a; --rose:#e8809a; --ivory:#f3ece0;
+  --serif:"Cormorant Garamond",Georgia,serif; --sans:"Jost",system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:#020d0c}
+body{display:flex;justify-content:center;align-items:center;font-family:var(--sans);color:var(--ivory);-webkit-tap-highlight-color:transparent}
+.phone{position:relative;width:100%;max-width:390px;height:100%;max-height:844px;overflow:hidden;background:
+  radial-gradient(120% 60% at 50% 0%,#14503f 0%,transparent 60%),
+  radial-gradient(90% 50% at 50% 105%,rgba(232,128,154,.28) 0%,transparent 65%),
+  var(--deep);
+  padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px)}
+@media(min-width:500px){.phone{border-radius:44px;border:1px solid rgba(217,178,106,.25)}}
+.screen{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:48px 32px;opacity:0;visibility:hidden;transform:scale(.98);transition:opacity .7s ease,transform .7s ease,visibility .7s}
+.screen.on{opacity:1;visibility:visible;transform:none}
+.sigil{width:92px;height:92px;margin-bottom:34px;animation:glow 4s ease-in-out infinite}
+@keyframes glow{50%{filter:drop-shadow(0 0 16px rgba(232,128,154,.7))}}
+h1{font-family:var(--serif);font-weight:500;font-size:54px;line-height:1;letter-spacing:.01em}
+h1 em{display:block;font-style:italic;color:var(--gold);font-size:46px;margin-top:6px}
+.sub{margin-top:26px;font-weight:300;font-size:15px;line-height:1.6;color:rgba(243,236,224,.75);max-width:260px}
+.btn{margin-top:44px;font:500 15px var(--sans);letter-spacing:.08em;color:var(--deep);background:var(--gold);border:0;border-radius:999px;padding:16px 44px;cursor:pointer;transition:transform .15s,background .2s}
+.btn:active{transform:scale(.96)}
+.btn:focus-visible,.opt:focus-visible{outline:2px solid var(--ivory);outline-offset:3px}
+.line{font-family:var(--serif);font-style:italic;font-weight:500;font-size:31px;line-height:1.3}
+.dots{position:absolute;bottom:calc(112px + env(safe-area-inset-bottom,0px));display:flex;gap:8px}
+.dots i{width:6px;height:6px;border-radius:50%;background:rgba(243,236,224,.25);transition:background .3s,transform .3s}
+.dots i.a{background:var(--rose);transform:scale(1.4)}
+.next{position:absolute;bottom:calc(40px + env(safe-area-inset-bottom,0px));margin:0;padding:13px 34px;background:transparent;color:var(--ivory);border:1px solid rgba(217,178,106,.5)}
+.q{font-family:var(--serif);font-size:42px;line-height:1.1;font-weight:500}
+.q em{font-style:italic;color:var(--rose)}
+.opts{position:relative;margin-top:48px;width:100%;height:120px}
+.opt{position:absolute;top:0;font:500 17px var(--sans);border-radius:999px;padding:16px 0;width:128px;cursor:pointer;transition:left .25s ease,top .25s ease,transform .25s ease,opacity .25s}
+#si{left:calc(50% - 138px);background:var(--rose);color:var(--deep);border:0;animation:beat 1.6s ease-in-out infinite}
+@keyframes beat{50%{transform:scale(1.06)}}
+#no{left:calc(50% + 10px);background:transparent;color:var(--ivory);border:1px solid rgba(243,236,224,.4)}
+.yes h2{font-family:var(--serif);font-style:italic;font-weight:500;font-size:46px;color:var(--gold);line-height:1.1}
+.yes p{margin-top:22px;font-weight:300;font-size:16px;line-height:1.6;color:rgba(243,236,224,.85);max-width:270px}
+.heart{position:absolute;bottom:-30px;pointer-events:none;animation:up linear forwards}
+@keyframes up{to{transform:translateY(-900px) rotate(20deg);opacity:0}}
+.line.long{font-size:23px;line-height:1.5}
+.ico{width:120px;height:120px;margin-bottom:30px;transition:opacity .5s}
+.ico svg{width:100%;height:100%}
+#no.free{position:absolute;z-index:5}
+.go{display:inline-block;text-decoration:none;margin-top:34px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.01s!important}}
+</style>
+</head>
+<body>
+<main class="phone" id="app">
+
+  <section class="screen on" id="cover">
+    <svg class="sigil" viewBox="0 0 100 100" fill="none" stroke="#d9b26a" stroke-width="1.5" aria-hidden="true">
+      <circle cx="50" cy="50" r="46"/><circle cx="50" cy="50" r="38" stroke-opacity=".4"/>
+      <path d="M50 74 26 50a14 14 0 0 1 24-14 14 14 0 0 1 24 14Z" fill="#e8809a" fill-opacity=".85" stroke="none"/>
+    </svg>
+    <h1>Una misión<em>para dos</em></h1>
+    <p class="sub">Tengo algo importante que pedirte. Es sobre el fin del mundo y sobre ti.</p>
+    <button class="btn" id="enter">Ingresar</button>
+  </section>
+
+  <section class="screen" id="story">
+    <div class="ico" id="ico"></div>
+    <p class="line" id="txt"></p>
+    <div class="dots" id="dots"></div>
+    <button class="btn next" id="next">Continuar</button>
+  </section>
+
+  <section class="screen" id="ask">
+    <h2 class="q">Entonces,<br><em>¿Deseas ir juntos?</em></h2>
+    <div class="opts">
+      <button class="opt" id="si">Sí</button>
+      <button class="opt" id="no">No</button>
+    </div>
+  </section>
+
+  <section class="screen yes" id="yes">
+    <h2>Misión aceptada</h2>
+    <p>Avengers: Doomsday, tú y yo. Yo llevo las palomitas, tú eliges el asiento.</p>
+    <a class="btn go" href="https://wa.me/qr/XEPR4V32U62NI1?s=r" target="_blank" rel="noopener">Abrir WhatsApp</a>
+  </section>
+</main>
+
+<script>
+const lines=[
+  "Dicen que el universo está a punto de enfrentarse a su mayor villano.",
+  "Yo, mientras tanto, libro una batalla más silenciosa: acostumbrarme a las ganas de verte.",
+  "Hay quienes salvan el mundo. Yo solo quiero guardar un lugar a tu lado.",
+  "Una sala oscura, palomitas para compartir y tu risa cerca de la mía. Con eso me basta.",
+  "Así como todos los héroes vuelven para enfrentar a Doom, mi universo necesita que vuelvas para ser feliz. Es por ello que quisiera que me acompañes a ver cómo todos se unen por el universo, así como yo quiero salvar el tuyo."
+];
+const $=id=>document.getElementById(id);
+const show=id=>{document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('on',s.id===id))};
+let i=0;
+const dots=$('dots');
+lines.forEach(()=>dots.appendChild(document.createElement('i')));
+const S='fill="none" stroke="#d9b26a" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"';
+const H='<path d="M50 74 32 56a10 10 0 0 1 18-12 10 10 0 0 1 18 12Z" fill="#e8809a" stroke="none"/>';
+const icons=[
+  '<svg viewBox="0 0 100 100"><defs><radialGradient id="g1" cx="35%" cy="30%"><stop offset="0" stop-color="#46a584"/><stop offset="1" stop-color="#0f3d33"/></radialGradient></defs><circle cx="50" cy="50" r="24" fill="url(#g1)" stroke="#d9b26a" stroke-width="1.5"/><ellipse cx="50" cy="50" rx="42" ry="12" transform="rotate(-20 50 50)" fill="none" stroke="#d9b26a" stroke-width="1.5"/><path d="M18 20l1.6 4.4 4.4 1.6-4.4 1.6L18 32l-1.6-4.4L12 26l4.4-1.6z" fill="#f3ece0"/><circle cx="84" cy="22" r="2" fill="#e8809a"/><circle cx="14" cy="76" r="1.6" fill="#f3ece0"/><circle cx="86" cy="78" r="2.2" fill="#d9b26a"/></svg>',
+  '<svg viewBox="0 0 100 100"><path d="M50 84 22 55 20 36 33 24 50 37 67 24 80 36 78 55Z" fill="#e8809a" fill-opacity=".12" stroke="#e8809a" stroke-opacity=".7" stroke-width="1.5" stroke-linejoin="round"/><g fill="#f3ece0"><circle cx="50" cy="84" r="3"/><circle cx="22" cy="55" r="2.4"/><circle cx="20" cy="36" r="2.8"/><circle cx="33" cy="24" r="2.4"/><circle cx="50" cy="37" r="2.8"/><circle cx="67" cy="24" r="2.4"/><circle cx="80" cy="36" r="2.8"/><circle cx="78" cy="55" r="2.4"/></g><circle cx="50" cy="84" r="7" fill="#e8809a" fill-opacity=".3"/><circle cx="88" cy="12" r="1.6" fill="#d9b26a"/><circle cx="10" cy="14" r="1.4" fill="#d9b26a"/></svg>',
+  '<svg viewBox="0 0 100 100"><defs><linearGradient id="g3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2d7a60"/><stop offset="1" stop-color="#0f3d33"/></linearGradient></defs><path d="M50 8 84 20V50C84 73 67 86 50 93 33 86 16 73 16 50V20Z" fill="url(#g3)" stroke="#d9b26a" stroke-width="2" stroke-linejoin="round"/><path d="M50 17 76 26V50C76 68 63 78 50 84 37 78 24 68 24 50V26Z" fill="none" stroke="#d9b26a" stroke-opacity=".45"/><path d="M50 74 32 56a10 10 0 0 1 18-12 10 10 0 0 1 18 12Z" transform="translate(5 3) scale(.9)" fill="#e8809a"/></svg>',
+  '<svg viewBox="0 0 100 100"><defs><linearGradient id="g4" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2d7a60"/><stop offset="1" stop-color="#0f3d33"/></linearGradient></defs><g transform="rotate(-8 50 50)"><path d="M10 32h80v12a6 6 0 0 0 0 12v12H10V56a6 6 0 0 0 0-12Z" fill="url(#g4)" stroke="#d9b26a" stroke-width="2" stroke-linejoin="round"/><path d="M68 36v32" stroke="#d9b26a" stroke-opacity=".6" stroke-dasharray="3 4"/><path d="M40 62 28 50a7 7 0 0 1 12-8 7 7 0 0 1 12 8Z" fill="#e8809a"/></g><path d="M84 14l1.6 4.4 4.4 1.6-4.4 1.6L84 26l-1.6-4.4L78 20l4.4-1.6z" fill="#f3ece0"/><circle cx="14" cy="20" r="1.8" fill="#d9b26a"/></svg>',
+  '<svg viewBox="0 0 100 100"><circle cx="38" cy="50" r="26" fill="#d9b26a" fill-opacity=".08" stroke="#d9b26a" stroke-width="2"/><circle cx="62" cy="50" r="26" fill="#e8809a" fill-opacity=".1" stroke="#e8809a" stroke-width="2"/><path d="M50 62 41 53a5.5 5.5 0 0 1 9-6 5.5 5.5 0 0 1 9 6Z" fill="#f3ece0"/><circle cx="50" cy="10" r="2" fill="#f3ece0"/><circle cx="12" cy="18" r="1.5" fill="#d9b26a"/><circle cx="90" cy="84" r="1.8" fill="#e8809a"/></svg>'
+];
+const iconsOld=[
+  '<svg viewBox="0 0 100 100" '+S+'><path d="M50 8C28 8 18 30 20 52L12 92H88L80 52C82 30 72 8 50 8Z" fill="#1f5a46"/><path d="M50 30C38 30 34 46 38 58 42 66 58 66 62 58 66 46 62 30 50 30Z" fill="#06201f"/><circle cx="43" cy="50" r="2.5" fill="#e8809a" stroke="none"/><circle cx="57" cy="50" r="2.5" fill="#e8809a" stroke="none"/></svg>',
+  '<svg viewBox="0 0 100 100" '+S+'><circle cx="50" cy="50" r="44"/><circle cx="50" cy="50" r="34" stroke-opacity=".4"/><path d="M50 6v10M50 84v10M6 50h10M84 50h10" stroke-opacity=".6"/>'+H+'</svg>',
+  '<svg viewBox="0 0 100 100" '+S+'><path d="M50 8 86 20V50C86 74 68 88 50 94 32 88 14 74 14 50V20Z" fill="#1f5a46"/><path d="M50 78 30 58a12 12 0 0 1 20-14 12 12 0 0 1 20 14Z" transform="translate(0 -8)" fill="#e8809a" stroke="none"/></svg>',
+  '<svg viewBox="0 0 100 100" '+S+'><path d="M10 32h80v12a6 6 0 0 0 0 12v12H10V56a6 6 0 0 0 0-12Z" fill="#1f5a46"/><path d="M68 36v32" stroke-dasharray="3 4" stroke-opacity=".6"/><path d="M40 62 28 50a7 7 0 0 1 12-8 7 7 0 0 1 12 8Z" fill="#e8809a" stroke="none"/></svg>'
+];
+function render(){
+  const t=$('txt'),ic=$('ico');t.style.opacity=0;ic.style.opacity=0;
+  setTimeout(()=>{ic.innerHTML=icons[i];ic.style.opacity=1;},250);
+  setTimeout(()=>{t.className='line'+(lines[i].length>140?' long':'');t.textContent=lines[i];t.style.opacity=1;},250);
+  t.style.transition='opacity .5s';
+  [...dots.children].forEach((d,k)=>d.classList.toggle('a',k===i));
+  $('next').textContent=i===lines.length-1?'Terminar':'Continuar';
+}
+$('enter').onclick=()=>{show('story');render();};
+$('next').onclick=()=>{
+  if(i<lines.length-1){i++;render();}else{show('ask');}
+};
+
+// El botón "No" escapa; después de varios intentos se vuelve diminuto
+const no=$('no'),app0=$('app'),WA='https://wa.me/qr/XEPR4V32U62NI1?s=r';
+let started=false,tries=0,wander;
+function place(){
+  const W=app0.clientWidth,H=app0.clientHeight,pr=app0.getBoundingClientRect(),sr=$('si').getBoundingClientRect();
+  for(let k=0;k<12;k++){
+    const x=24+Math.random()*(W-128-48),y=90+Math.random()*(H-190);
+    const ok=Math.abs(x+64-(sr.left-pr.left+64))>140||Math.abs(y-(sr.top-pr.top))>80;
+    no.style.left=x+'px';no.style.top=y+'px';
+    if(ok)break;
+  }
+}
+function dodge(e){
+  if(e&&e.preventDefault)e.preventDefault();
+  if(!started){
+    started=true;
+    const r=no.getBoundingClientRect(),p=app0.getBoundingClientRect();
+    app0.appendChild(no);
+    no.classList.add('free');
+    no.style.left=(r.left-p.left)+'px';no.style.top=(r.top-p.top)+'px';
+    void no.offsetWidth;
+    wander=setInterval(place,1100);
+  }
+  tries++;
+  place();
+  no.style.transform='scale('+Math.max(.6,1-tries*.04)+')';
+}
+no.addEventListener('pointerenter',dodge);
+no.addEventListener('pointerdown',dodge);
+no.addEventListener('touchstart',dodge,{passive:false});
+no.addEventListener('click',e=>e.preventDefault());
+document.addEventListener('pointermove',e=>{
+  if(!started)return;
+  const r=no.getBoundingClientRect();
+  if(Math.hypot(e.clientX-(r.left+r.width/2),e.clientY-(r.top+r.height/2))<110)place();
+});
+
+$('si').onclick=()=>{
+  clearInterval(wander);no.style.display='none';
+  show('yes');
+  const app=$('app');
+  for(let k=0;k<26;k++){
+    const h=document.createElement('span');
+    h.className='heart';h.textContent=k%3?'♥':'✦';
+    h.style.left=Math.random()*100+'%';
+    h.style.fontSize=(14+Math.random()*22)+'px';
+    h.style.color=k%3?'#e8809a':'#d9b26a';
+    h.style.animationDuration=(4+Math.random()*4)+'s';
+    h.style.animationDelay=(Math.random()*1.5)+'s';
+    app.appendChild(h);
+  }
+  setTimeout(()=>{try{window.top.location.href=WA}catch(e){window.location.href=WA}},2400);
+};
+</script>
+</body>
+</html>
